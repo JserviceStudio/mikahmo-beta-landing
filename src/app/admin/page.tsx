@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type Subscriber = {
   id: string;
@@ -30,7 +30,6 @@ export default function AdminPage() {
   ];
 
   // Load wave data on mount
-  import { useEffect } from 'react';
   useEffect(() => {
     const stored = localStorage.getItem('mikahmo_beta_waves');
     if (stored) {
