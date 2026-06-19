@@ -137,7 +137,36 @@ export default function AdminPage() {
   const newCount = subscribers.filter(s => !waveData[s.email]).length;
 
   return (
-    <main style={{ width: '100%', padding: '2rem 0', display: 'flex', justifyContent: 'center' }}>
+    <main style={{ width: '100%', padding: '2rem 1rem', display: 'flex', justifyContent: 'center' }}>
+      <style dangerouslySetInnerHTML={{__html: `
+        @media (max-width: 768px) {
+          .responsive-table thead { display: none; }
+          .responsive-table tbody tr { 
+            display: block; 
+            margin-bottom: 1rem; 
+            border-radius: 12px; 
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+          }
+          .responsive-table td { 
+            display: flex; 
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0 !important;
+            border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+          }
+          .responsive-table td:last-child { border-bottom: none !important; }
+          .responsive-table td::before {
+            content: attr(data-label);
+            font-weight: 600;
+            margin-right: 1rem;
+            color: var(--md-sys-color-outline);
+          }
+          .header-actions { flex-direction: column; width: 100%; }
+          .header-actions button { width: 100% !important; margin-bottom: 0.5rem; }
+          .action-btn-container { width: 100%; text-align: right; }
+        }
+      `}} />
       <div className="bento-container" style={{ width: '100%', maxWidth: '1000px' }}>
         <div className="bento-card col-span-12">
           
@@ -178,7 +207,7 @@ export default function AdminPage() {
                     <span style={{ fontWeight: 'bold', color: '#0b57d0' }}>{newCount}</span> nouveaux à traiter
                   </p>
                 </div>
-                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                <div className="header-actions" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                   <button onClick={exportPlayConsole} className="m3-btn" style={{ padding: '0.8rem 1.5rem', width: 'auto' }}>
                     Télécharger Nouveaux (Vague {Math.max(0, ...Object.values(waveData)) + 1})
                   </button>
@@ -199,8 +228,8 @@ export default function AdminPage() {
                 </div>
               </div>
 
-              <div style={{ overflowX: 'auto', marginTop: '1rem' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '800px' }}>
+              <div style={{ marginTop: '1rem' }}>
+                <table className="responsive-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
                   <thead>
                     <tr style={{ borderBottom: '1px solid var(--md-sys-color-outline-variant)' }}>
                       <th style={{ padding: '1rem', width: '50px' }}>N°</th>
@@ -216,21 +245,21 @@ export default function AdminPage() {
                       const wave = waveData[sub.email] || 0;
                       return (
                         <tr key={sub.id || idx} style={{ backgroundColor: getWaveColor(sub.email), borderBottom: '1px solid rgba(0,0,0,0.05)', transition: 'background-color 0.3s' }}>
-                          <td style={{ padding: '1rem', fontWeight: 'bold', color: 'var(--md-sys-color-on-surface-variant)' }}>
+                          <td data-label="N°" style={{ padding: '1rem', fontWeight: 'bold', color: 'var(--md-sys-color-on-surface-variant)' }}>
                             {idx + 1}
                           </td>
-                          <td style={{ padding: '1rem', fontWeight: wave === 0 ? 'bold' : 'normal', color: wave === 0 ? '#0b57d0' : 'inherit' }}>
+                          <td data-label="Vague" style={{ padding: '1rem', fontWeight: wave === 0 ? 'bold' : 'normal', color: wave === 0 ? '#0b57d0' : 'inherit' }}>
                             {wave === 0 ? 'Nouveau' : `Vague ${wave}`}
                           </td>
-                          <td style={{ padding: '1rem' }}>{sub.email}</td>
-                          <td style={{ padding: '1rem' }}>{sub.whatsapp}</td>
-                          <td style={{ padding: '1rem' }}>
+                          <td data-label="Email" style={{ padding: '1rem', wordBreak: 'break-all' }}>{sub.email}</td>
+                          <td data-label="WhatsApp" style={{ padding: '1rem' }}>{sub.whatsapp}</td>
+                          <td data-label="Date d'inscription" style={{ padding: '1rem' }}>
                             {new Date(sub.date).toLocaleString('fr-FR', {
                               day: '2-digit', month: '2-digit', year: 'numeric',
                               hour: '2-digit', minute: '2-digit'
                             })}
                           </td>
-                          <td style={{ padding: '1rem', textAlign: 'right' }}>
+                          <td data-label="Action" className="action-btn-container" style={{ padding: '1rem', textAlign: 'right' }}>
                             <a 
                               href={`https://wa.me/${formatWhatsAppNumber(sub.whatsapp)}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`}
                               target="_blank"
