@@ -158,6 +158,11 @@
       3. Validation du JSON "Claim" :
          - Le payload actuel envoyé est `{ "license_key": "xxx", "email": "xxx" }`. 
          - ACTION: Vérifier si le backend s'attend strictement à cela ou s'il nécessite `session_id` ou `target_router_id` comme défini dans le SPEC initial. Si oui, merci d'adapter ou de nous notifier.
+
+      4. Erreur réseau (Network Error) sur le bouton de paiement :
+         - En production, les utilisateurs obtiennent une "Network error" en cliquant sur "Buy Now" ou "Claim Offer".
+         - CAUSE: Le front-end fait un appel vers `POST /api/store/checkout` (comme défini dans la SPEC `checkout-session`) pour récupérer l'URL de votre hub d'achat. Actuellement, cet endpoint ne répond pas (ou n'est pas déployé/bloqué par CORS), ce qui fait crasher le parseur JSON.
+         - ACTION: Implémenter l'endpoint `/api/store/checkout` pour qu'il retourne bien `{ "checkout_url": "URL_DU_HUB_DACHAT_STRIPE_OU_FEDAPAY" }`. Assurez-vous aussi que la variable `NEXT_PUBLIC_API_BASE_URL` pointe bien vers le serveur de production.
     </MISSING_OPTIONS_REQUESTED>
   </FRONTEND_INTEGRATION_STATUS>
 </AGENT_TASK>
