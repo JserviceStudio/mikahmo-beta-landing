@@ -203,6 +203,7 @@ export default function AdminPage() {
                 <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '800px' }}>
                   <thead>
                     <tr style={{ borderBottom: '1px solid var(--md-sys-color-outline-variant)' }}>
+                      <th style={{ padding: '1rem', width: '50px' }}>N°</th>
                       <th style={{ padding: '1rem' }}>Vague</th>
                       <th style={{ padding: '1rem' }}>Email</th>
                       <th style={{ padding: '1rem' }}>WhatsApp</th>
@@ -215,6 +216,9 @@ export default function AdminPage() {
                       const wave = waveData[sub.email] || 0;
                       return (
                         <tr key={sub.id || idx} style={{ backgroundColor: getWaveColor(sub.email), borderBottom: '1px solid rgba(0,0,0,0.05)', transition: 'background-color 0.3s' }}>
+                          <td style={{ padding: '1rem', fontWeight: 'bold', color: 'var(--md-sys-color-on-surface-variant)' }}>
+                            {idx + 1}
+                          </td>
                           <td style={{ padding: '1rem', fontWeight: wave === 0 ? 'bold' : 'normal', color: wave === 0 ? '#0b57d0' : 'inherit' }}>
                             {wave === 0 ? 'Nouveau' : `Vague ${wave}`}
                           </td>
