@@ -1,0 +1,86 @@
+# ============================================================
+# DÉPENDANCES
+# ============================================================
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# ============================================================
+# BUILD / NEXT.JS
+# ============================================================
+/.next/
+/out/
+/build
+next-env.d.ts
+*.tsbuildinfo
+
+# ============================================================
+# 🔒 DONNÉES SENSIBLES — NE JAMAIS COMMITTER
+# ============================================================
+# Variables d'environnement (tokens, mots de passe, URLs privées)
+.env
+.env.*
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Base de données locale (données des inscrits)
+*.db
+*.sqlite
+*.sqlite3
+subscribers.db
+
+# Certificats et clés privées
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cert
+
+# Exports de données sensibles
+*.csv
+
+# ============================================================
+# SAUVEGARDES ET FICHIERS TEMPORAIRES
+# ============================================================
+.CloneBeforeUpdate/
+*.bak
+*.tmp
+*.swp
+*.orig
+
+# ============================================================
+# LOGS
+# ============================================================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+/logs
+*.log
+
+# ============================================================
+# OS / ÉDITEURS
+# ============================================================
+.DS_Store
+.DS_Store?
+Thumbs.db
+.idea/
+.vscode/settings.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ============================================================
+# DÉPLOIEMENT
+# ============================================================
+.vercel
