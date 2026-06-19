@@ -55,8 +55,8 @@ export default function AdminPage() {
   const exportPlayConsole = () => {
     if (subscribers.length === 0) return;
     
-    // Play Console expects a simple CSV with emails
-    const csvContent = "Email\n" + subscribers.map(s => s.email).join('\n');
+    // Play Console expects a simple CSV with emails, one per line, without a header
+    const csvContent = subscribers.map(s => s.email).join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     
