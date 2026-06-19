@@ -312,3 +312,38 @@ h1, h2, h3 {
   width: 24px;
   height: 24px;
 }
+
+/* react-phone-number-input styles */
+.PhoneInput {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+.PhoneInputInput {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  padding: 1.2rem 1.5rem;
+  background-color: var(--m3-surface-variant);
+  border: 2px solid transparent;
+  border-radius: var(--bento-inner-radius);
+  color: var(--m3-text-main);
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  transition: var(--transition-smooth);
+  outline: none;
+}
+.PhoneInputInput:focus {
+  border-color: var(--m3-primary);
+  background-color: var(--m3-surface);
+}
+.PhoneInputCountry {
+  padding: 1.2rem;
+  background-color: var(--m3-surface-variant);
+  border-radius: var(--bento-inner-radius);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border: 2px solid transparent;
+}

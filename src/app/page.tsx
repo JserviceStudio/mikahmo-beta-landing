@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 
 const mockups = [
   'Screenshot_2026-06-19-11-44-48-055_com.moailte.mikhmonproai-edit.png',
@@ -235,14 +237,14 @@ export default function Home() {
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={status === 'loading'}
                 />
-                <input
-                  type="tel"
-                  required
-                  className="m3-input"
-                  placeholder={t.form_whatsapp}
+                <PhoneInput
+                  international
+                  defaultCountry="BJ"
                   value={whatsapp}
-                  onChange={(e) => setWhatsapp(e.target.value)}
+                  onChange={(value) => setWhatsapp(value || '')}
+                  placeholder={t.form_whatsapp}
                   disabled={status === 'loading'}
+                  required
                 />
               </div>
               <button 
