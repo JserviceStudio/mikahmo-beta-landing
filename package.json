@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "node -e \"const r=['API_BASE_URL','BETA_EXPORT_TOKEN','ADMIN_PASSWORD'];const m=r.filter(k=>!process.env[k]);if(m.length){console.warn('⚠️  Variables manquantes:',m.join(', '));} else {console.log('✅ Variables d\\'env OK');}\"",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
